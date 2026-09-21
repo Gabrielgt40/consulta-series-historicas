@@ -864,8 +864,3 @@ shinyApp(
   ui = ui,
   server = server
 )
-
-install.packages("rsconnect")
-library(rsconnect)
-
-rsconnect::writeManifest()
