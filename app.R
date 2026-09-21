@@ -17,6 +17,8 @@ arquivo <- "dados_gerais.xlsx"
 algodao <- read_excel(arquivo, sheet = "Algodão")
 amendoim <- read_excel(arquivo, sheet = "Amendoim")
 arroz <- read_excel(arquivo, sheet = "Arroz")
+aveia <- read_excel(arquivo, sheet = "Aveia")
+canola <- read_excel(arquivo, sheet = "Canola")
 
 preparar_dados <- function(df) {
   
@@ -53,7 +55,8 @@ preparar_dados <- function(df) {
 algodao <- preparar_dados(algodao)
 amendoim <- preparar_dados(amendoim)
 arroz <- preparar_dados(arroz)
-
+aveia <- preparar_dados(aveia)
+canola <- preparar_dados(canola)
 
 # ORDENAR AS SAFRAS
 
@@ -106,7 +109,9 @@ ui <- page_sidebar(
       choices = c(
         "Algodão",
         "Amendoim",
-        "Arroz"),
+        "Arroz",
+        "Aveia",
+        "Canola"),
       selected = "Algodão"),
     
     # REGIÕES
@@ -200,6 +205,14 @@ server <- function(input, output, session) {
     } else if (input$cultura == "Arroz") {
       
       arroz
+      
+    } else if (input$cultura == "Aveia") {
+      
+      aveia
+      
+    } else if (input$cultura == "Canola") {
+      
+      canola
       
     }
     
@@ -851,3 +864,8 @@ shinyApp(
   ui = ui,
   server = server
 )
+
+install.packages("rsconnect")
+library(rsconnect)
+
+rsconnect::writeManifest()
